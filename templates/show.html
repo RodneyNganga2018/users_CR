@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type='text/css' href="{{ url_for('static',filename='css/bootstrap.css') }}">
+    <title>Read (One)</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="container d-flex justify-content-between align-items-center mb-5">
+            <h1>User {{user_id}}</h1>
+            <a role="button" class="btn btn-primary btn-lg" href="http://127.0.0.1:5000/users">Home</a>
+        </div>
+        {% for user in all_users %}
+            {% if user['id']==user_id %}
+            <table class="table table-striped border border-5">
+                <tr>
+                    <th>Full Name</th>
+                    <td>{{user['first_name']}} {{user['last_name']}}</td>
+                </tr>
+                <tr>
+                    <th>Email:</th>
+                    <td>{{user['email']}}</td>
+                </tr>
+                <tr>
+                    <th>Created at:</th>
+                    <td>{{user['created_at']}}</td>
+                </tr>
+                <tr>
+                    <th>Updated at:</th>
+                    <td>{{user['updated_at']}}</td>
+                </tr>
+            </table>
+            <div class="d-flex justify-content-start">
+                <a role="button" class="btn btn-primary me-3" href="http://127.0.0.1:5000/users/{{user['id']}}/edit">Edit</a>
+                <a role="button" class="btn btn-outline-danger" href="http://127.0.0.1:5000/users/delete_user/{{user['id']}}">Delete</a>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</body>
+</html>

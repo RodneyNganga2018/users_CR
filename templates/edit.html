@@ -4,29 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/bootstrap.css') }}">
-    <title>Create</title>
+    <link rel="stylesheet" type='text/css' href="{{ url_for('static',filename='css/bootstrap.css') }}">
+    <title>Edit</title>
 </head>
 <body>
     <div class="container mt-5">
         <div class="container d-flex justify-content-between align-items-center">
-            <h1>Add a new user</h1>
+            <h1>Edit User {{user_id}}</h1>
             <a role="button" class="btn btn-primary btn-lg" href="http://127.0.0.1:5000/users">Home</a>
         </div>
-        <form action="/create_user" method="POST" class="mt-5 p-5 border border-2 rounded">
+        <form action="/update_user/{{user_id}}" method="POST" class="mt-5 p-5 border border-2 rounded">
             <div class="mb-3 col-3">
                 <label for="first_name" class="form-label">First Name:</label>
-                <input type="text" id="first_name" name="first_name" class="form-control">
+                <input type="text" id="first_name" name="first_name" class="form-control" value="{{user[user_id-1]['first_name']}}">
             </div>
             <div class="mb-3 col-3">
                 <label for="last_name" class="form-label">Last Name:</label>
-                <input type="text" id="last_name" name="last_name" class="form-control">
+                <input type="text" id="last_name" name="last_name" class="form-control" value="{{user[user_id-1]['last_name']}}">
             </div>
             <div class="mb-3 col-3">
                 <label for="email" class="form-label">Email:</label>
-                <input type="text" name="email" id="email" class="form-control">
+                <input type="text" name="email" id="email" class="form-control" value="{{user[user_id-1]['email']}}">
             </div>
-            <input type="submit" value="Create" role="button" class="btn btn-primary">
+            <input type="submit" value="Update" role="button" class="btn btn-primary me-3">
+            <a role="button" class="btn btn-outline-success" href="http://127.0.0.1:5000/users/{{user_id}}">Show User</a>
         </form>
     </div>
 </body>
